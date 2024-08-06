@@ -1,0 +1,40 @@
+.card{
+    background-color:rgb(188, 171, 243);
+    border-radius: 10px;
+    border: none;
+    margin: 10PX;
+    box-shadow: 0 0 10px rgb(124, 75, 169);
+    
+}
+
+
+.List_g{
+    background-color: rgb(118, 127, 220);
+    width: 100%;
+    border-radius: 30px;
+    box-shadow: 0 0 10px rgb(46, 46, 91);
+    font-size: small;
+   /* margin: 10px;
+   justify-content: center; */
+   margin-bottom: 10px;
+   
+    
+}
+.List_g button{
+    background-color: rgb(188, 171, 243);
+    border: none;
+    color: black;
+}
+.List_g button:hover{
+    background-color: rgb(46, 46, 91) ;
+}
+.btn{
+    background-color: rgb(234, 106, 226);
+    border: none;
+    color: black;
+}
+.btn:hover{
+    background-color:rgb(46, 46, 91) ;
+}
+/*  */
+

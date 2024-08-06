@@ -1,0 +1,40 @@
+
+.container{
+ padding: 5px;
+}
+.col-sm-3{
+  padding: 15px;
+}
+title{
+  color: aliceblue;
+}
+/* body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+} */
+
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.row {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+}
+*{
+  overflow-x: hidden;
+}
