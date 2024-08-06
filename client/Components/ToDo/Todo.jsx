@@ -1,57 +1,37 @@
 import './Todo.css';
 import React from 'react';
 import { Card, Button, ListGroup } from 'react-bootstrap';
-import axios from 'axios';
 import { useDrop } from 'react-dnd';
+import axios from 'axios';
+import TaskItem from './TaskItem';
 import { ItemTypes } from '../../utils/ItemTypes';
 
-const Todo = ({ title, tasks, onAddTask, onDeleteTask, moveTask, noTaskMessage }) => {
-  const handleDeleteTask = async (id) => {
-    try {
-      await axios.delete(`http://localhost:5000/tasks/${id}`);
-      onDeleteTask(id);
-    } catch (error) {
-      console.error('Error deleting task:', error);
-    }
-  };
-
-  const [, drop] = useDrop({
+const Todo = ({ title, tasks, onAddTask, onDeleteTask, moveTask }) => {
+  const [{ isOver }, drop] = useDrop({
     accept: ItemTypes.TASK,
-    drop: (item) => moveTask(item.id, 'To Do')
+    drop: (item) => moveTask(item.id, 'To Do'),
+    collect: (monitor) => ({
+      isOver: !!monitor.isOver(),
+    }),
   });
 
   return (
-    <>
-      <Card className="mb-3" ref={drop}>
+    <div ref={drop} >
+      <Card className="mb-3">
         <Card.Body>
           <Card.Title>{title}</Card.Title>
           <ListGroup variant="flush">
-            {tasks.length > 0 ? (
-              tasks.map((task) => (
-                <ListGroup.Item key={task._id} className='List_g'>
-                  <strong>{task.task}</strong>
-                  <p>{task.description}</p>
-                  <Button onClick={() => handleDeleteTask(task._id)}>
-                    Delete
-                  </Button>
-                </ListGroup.Item>
-              ))
-            ) : (
-              <p>{noTaskMessage}</p>
-            )}
+            {tasks.map((task) => (
+              <TaskItem key={task._id} task={task} onDeleteTask={onDeleteTask} />
+            ))}
           </ListGroup>
         </Card.Body>
       </Card>
       <Button onClick={onAddTask} className="mt-3 btn">
         Add New Task
       </Button>
-    </>
+    </div>
   );
 };
 
 export default Todo;
-
-
-
-
-
